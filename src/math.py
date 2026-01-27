@@ -7,7 +7,7 @@ def winsorize(
         axis: int = 0
 ) -> np.ndarray:
     """
-    Windorize each vector of a 2D numpy array to symmetric percentiles given by `percentile`.
+    Winsorize each vector of a 2D numpy array to symmetric percentiles given by `percentile`.
     """
     try:
         if not 0 <= percentile <= 1:
