@@ -34,3 +34,9 @@ The model outputs three dataframes:
 1. Loadings
 2. Factor Returns
 3. Residual Returns
+
+Returns of the first three computed factors:
+![3_factors.png](plots/3_factors.png)
+
+Histogram of first factor returns: 
+![factor_1_hist.png](plots/factor_1_hist.png)]
