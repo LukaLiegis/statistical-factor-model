@@ -39,4 +39,4 @@ Returns of the first three computed factors:
 ![3_factors.png](plots/3_factors.png)
 
 Histogram of first factor returns: 
-![factor_1_hist.png](plots/factor_1_hist.png)]
+![factor_1_hist.png](plots/factor_1_hist.png)
