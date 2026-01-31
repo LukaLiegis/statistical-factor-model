@@ -36,7 +36,7 @@ The model outputs three dataframes:
 3. Residual Returns
 
 Returns of the first three computed factors:
-![3_factors.png](plots/3_factors.png)
+![5_factors.png](plots/5_factors.png)
 
 Histogram of first factor returns: 
 ![factor_1_hist.png](plots/factor_1_hist.png)
