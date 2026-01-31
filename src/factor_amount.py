@@ -1,22 +1,31 @@
 import numpy as np
+import polars as pl
 from typing import Literal, Callable
 
 from src.math import _compute_eigenvalues
 
 
 def select_number_of_factors(
-        returns_matrix: np.ndarray,
+        retruns_df: pl.DataFrame,
         method: Literal['threshold', 'scree', 'bai_ng'],
         max_factors: int = 50,
 ) -> int:
     """
     Select number of factors using selected criteria.
     """
+    retruns_df = retruns_df.pivot(
+        values='asset_returns',
+        index='symbol',
+        on='date'
+    ).drop('symbol').fill_null(pl.all().median())
+
+    returns_matrix = retruns_df.to_numpy()
+
     n_assets, T = returns_matrix.shape
     eigenvalues = _compute_eigenvalues(returns_matrix, T)
     max_factors = min(max_factors, len(eigenvalues))
 
-    dispatch: dict[method, Callable[[], int]] = {
+    dispatch: dict[Literal['threshold', 'scree', 'bai_ng'], Callable[[], int]] = {
         'threshold': lambda: _threshold_method(eigenvalues, max_factors, n_assets / T),
         'scree': lambda: _scree_method(eigenvalues, max_factors),
         'bai_ng': lambda: _bai_ng_method(eigenvalues, max_factors, n_assets, T)
