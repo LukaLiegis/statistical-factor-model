@@ -1,6 +1,17 @@
 import numpy as np
 
 
+def _compute_eigenvalues(
+        returns_matrix: np.ndarray,
+        T: int,
+) -> np.ndarray:
+    """
+    Compute eigenvalues of returns.
+    """
+    _, S, _ = np.linalg.svd(returns_matrix, full_matrices=False)
+    return S ** 2 / T
+
+
 def winsorize(
         data: np.ndarray,
         percentile: float = 0.05,
